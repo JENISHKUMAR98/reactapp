@@ -9,6 +9,8 @@ function App() {
       <Component name="Jenishkumar" heroName="Batman" />
       <Component name="Viralkumar" />
       <Component name="Mayurkumar" />
+      <Component/>
+      <Component/>
       <Welcome/>
       <Hello/>
     </div>
