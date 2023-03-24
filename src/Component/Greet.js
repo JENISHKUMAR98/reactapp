@@ -1,9 +1,9 @@
 
 import React from 'react'
-//
-//    function Greet() {
-// return <h1> Hello Jenish </h1>
-//   }
+
+   function Greet() {
+return <h1> Hello Jenish </h1>
+  }
 
 const Greet = (props) => {
     console.log(props);
