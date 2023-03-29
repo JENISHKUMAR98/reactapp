@@ -15,4 +15,3 @@ const Hello = () => {
  };
 //without JSX
 export default Hello
-

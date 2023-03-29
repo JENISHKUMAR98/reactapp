@@ -5,6 +5,11 @@ import  Welcome from "./Component/Welcome";
 import Hello from "./Component/Hello";
 import Message from "./Component/Message";
 import Counter from "./Component/Counter";
+import Greet1 from "./Component/Greet1";
+import Welcome1 from "./Component/Welcome1";
+import FunctionClick from "./Component/FunctionClick";
+import ClassClick from "./Component/ClassClick";
+import EventBind from "./Component/EventBind";
 function App() {
   return (
     <div className="App">
@@ -26,7 +31,14 @@ function App() {
       {/*       <Welcome name="Dev"/>*/}
       {/*<Hello />*/}
       {/*<Message/>*/}
-      <Counter/>
+      {/*<Greet1  name="Jenishkumar" heroName="Batman"/>*/}
+      {/*<Greet1  name="Viralkumar" heroName="Spider"/>*/}
+      {/*<Greet1  name="Mayurkumar" heroName="Ironman"/>*/}
+      {/*<Counter/>*/}
+      {/*< Welcome1 name="Yash"/>*/}
+      {/*<FunctionClick/>*/}
+      <ClassClick/>
+      {/*<EventBind />*/}
     </div>
   );
 }
