@@ -1,46 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
-import Component from './Component/Greet'
-import  Welcome from "./Component/Welcome";
-import Hello from "./Component/Hello";
-import Message from "./Component/Message";
-import Counter from "./Component/Counter";
-import Greet1 from "./Component/Greet1";
-import Welcome1 from "./Component/Welcome1";
-import FunctionClick from "./Component/FunctionClick";
-import ClassClick from "./Component/ClassClick";
-import EventBind from "./Component/EventBind";
-function App() {
-  return (
-    <div className="App">
-      {/*<Component name="Jenishkumar" heroName="Batman">*/}
-      {/*    <p>This is children props</p>*/}
-      {/*</Component>*/}
-      {/*<Component name="Viralkumar" heroName="Spiderman">*/}
-      {/*    <button>Action</button>*/}
-      {/*</Component>*/}
-      {/*<Component name="Mayurkumar" heroname="Ironman" />*/}
-      {/*     <textarea>*/}
-      {/*         Hi ! my name is Jenish*/}
-      {/*     </textarea>*/}
-      {/*<Component/>*/}
-      {/*<Welcome name="Yash"/>*/}
-      {/*    <p> This is Yash </p>*/}
-      {/*  <Welcome name="Vibhuti"/>*/}
-      {/*  <button>An Action Hero</button>*/}
-      {/*       <Welcome name="Dev"/>*/}
-      {/*<Hello />*/}
-      {/*<Message/>*/}
-      {/*<Greet1  name="Jenishkumar" heroName="Batman"/>*/}
-      {/*<Greet1  name="Viralkumar" heroName="Spider"/>*/}
-      {/*<Greet1  name="Mayurkumar" heroName="Ironman"/>*/}
-      {/*<Counter/>*/}
-      {/*< Welcome1 name="Yash"/>*/}
-      {/*<FunctionClick/>*/}
-      <ClassClick/>
-      {/*<EventBind />*/}
-    </div>
-  );
-}
+import { useEffect, useState } from "react"
+import { NewTodoForm } from "./NewTodoForm"
+import "./styles.css"
+import { TodoList } from "./TodoList"
 
-export default App;
+export default function App() {
+    const [todos, setTodos] = useState(() => {
+        const localValue = localStorage.getItem("ITEMS")
+        if (localValue == null) return []
+
+        return JSON.parse(localValue)
+    })
+
+    useEffect(() => {
+        localStorage.setItem("ITEMS", JSON.stringify(todos))
+    }, [todos])
+
+    function addTodo(title) {
+        setTodos(currentTodos => {
+            return [
+                ...currentTodos,
+                { id: crypto.randomUUID(), title, completed: false },
+            ]
+        })
+    }
+
+    function toggleTodo(id, completed) {
+        setTodos(currentTodos => {
+            return currentTodos.map(todo => {
+                if (todo.id === id) {
+                    return { ...todo, completed }
+                }
+
+                return todo
+            })
+        })
+    }
+
+    function deleteTodo(id) {
+        setTodos(currentTodos => {
+            return currentTodos.filter(todo => todo.id !== id)
+        })
+    }
+
+    return (
+        <>
+            <NewTodoForm onSubmit={addTodo} />
+            <h1 className="header">Todo List</h1>
+            <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+        </>
+    )
+}
